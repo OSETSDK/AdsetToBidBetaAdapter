@@ -159,9 +159,6 @@
 }
 - (void)dealloc {
     [self.expressDataAdRender unregisterDataObject];
-#if DEBUG
-    WindmillLogDebug(@"OSET", @"%s", __func__);
-#endif
 }
 
 @end

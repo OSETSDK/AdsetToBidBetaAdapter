@@ -11,8 +11,6 @@
 @property (nonatomic, weak) OSETNativeDataAdObject *ad;
 @end
 
-
-
 @implementation OSETCustomToBidNativeAdData
 
 @synthesize adMode = _adMode;
@@ -21,7 +19,6 @@
 @synthesize iconUrl = _iconUrl;
 @synthesize rating = _rating;
 @synthesize title = _title;
-
 
 @synthesize adType;
 @synthesize networkId;
@@ -82,6 +79,5 @@
 - (void)dealloc {
 //    WindmillLogDebug(@"%s", __func__);
 }
-
 
 @end
