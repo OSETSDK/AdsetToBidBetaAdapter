@@ -57,6 +57,7 @@
 }
 
 - (void)didRequestAdPrivacyConfigUpdate:(NSDictionary *)config {
-    // ToBid 要求实现此回调；Adset 当前没有对应的动态隐私配置接口。
+    WindMillPersonalizedAdvertisingState state = [WindMillAds getPersonalizedAdvertisingState];
+    [OSETManager shareInstance].isEnablePersonalAds = (state == WindMillPersonalizedAdvertisingStateOn);
 }
 @end
