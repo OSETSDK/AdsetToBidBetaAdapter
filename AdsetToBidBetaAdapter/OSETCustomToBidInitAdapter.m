@@ -57,6 +57,6 @@
 }
 
 - (void)didRequestAdPrivacyConfigUpdate:(NSDictionary *)config {
-    (void)[WindMillAds getPersonalizedAdvertisingState];
+    // ToBid 要求实现此回调；Adset 当前没有对应的动态隐私配置接口。
 }
 @end
