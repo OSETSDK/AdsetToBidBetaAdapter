@@ -5,6 +5,23 @@
 #import <WindMillSDK/WindMillSDK.h>
 #import <dispatch/dispatch.h>
 
+static inline UIWindow *OSETToBidForegroundWindow(void) {
+    for (UIScene *scene in UIApplication.sharedApplication.connectedScenes) {
+        if (![scene isKindOfClass:UIWindowScene.class] ||
+            scene.activationState != UISceneActivationStateForegroundActive) {
+            continue;
+        }
+        UIWindow *visibleWindow = nil;
+        for (UIWindow *window in ((UIWindowScene *)scene).windows) {
+            if (!window.rootViewController) continue;
+            if (window.isKeyWindow) return window;
+            if (!window.hidden && !visibleWindow) visibleWindow = window;
+        }
+        if (visibleWindow) return visibleWindow;
+    }
+    return nil;
+}
+
 // ToBid 与 OSET 的失败原因编码不同，不能直接透传枚举值。
 static inline OSETBiddingFailureReason OSETToBidLossReason(TBReason reason) {
     switch (reason) {

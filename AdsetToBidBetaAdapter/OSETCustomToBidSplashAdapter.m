@@ -33,19 +33,21 @@
     self.isReady = NO;
     self.parameter = parameter;
     NSString *osetSlotId = parameter.placementId;
-    self.splashAd = [[OSETSplashAd alloc] initWithSlotId:osetSlotId window:nil bottomView:parameter.extra[WindMillConstant.BottomView]];
+    UIWindow *loadWindow = [self.bridge viewControllerForPresentingModalView].view.window ?: OSETToBidForegroundWindow();
+    self.splashAd = [[OSETSplashAd alloc] initWithSlotId:osetSlotId window:loadWindow bottomView:parameter.extra[WindMillConstant.BottomView]];
     self.splashAd.delegate = self;
     [self.splashAd loadSplashAd];
 }
 - (void)showSplashAdInWindow:(UIWindow *)window parameter:(AWMParameter *)parameter {
-    UIView *bottomView = [parameter.extra objectForKey: WindMillConstant.BottomView];
-    self.splashAd.bottomView = bottomView;
-    if(window){
-        self.splashAd.window = window;
-    }else{
-        self.splashAd.window = [UIApplication sharedApplication].keyWindow;
+    UIView *bottomView = [parameter.extra objectForKey:WindMillConstant.BottomView];
+    UIWindow *targetWindow = window ?: [self.bridge viewControllerForPresentingModalView].view.window ?: OSETToBidForegroundWindow();
+    if (!targetWindow.rootViewController) {
+        NSError *error = [NSError errorWithDomain:@"OSETToBidAdapter" code:70002
+                                         userInfo:@{NSLocalizedDescriptionKey: @"开屏展示窗口不可用"}];
+        [self.bridge splashAdDidShowFailed:self error:error];
+        return;
     }
-    [self.splashAd showSplashAd];
+    [self.splashAd showSplashAdWithWindow:targetWindow bottomView:bottomView];
 
 }
 - (void)didReceiveBidResult:(AWMMediaBidResult *)result {

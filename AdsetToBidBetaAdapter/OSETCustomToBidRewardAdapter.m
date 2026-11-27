@@ -45,12 +45,10 @@
 /// 展示广告的方法
 /// @param viewController 控制器对象
 /// @param parameter 展示广告的参数，由ToBid接入媒体配置
-- (BOOL)showAdFromRootViewController:(UIViewController *)viewController parameter:(AWMParameter *)parameter{
+- (void)showAdFromRootViewController:(UIViewController *)viewController parameter:(AWMParameter *)parameter{
     if(self.rewardAd.isAdValid  && viewController){
         [self.rewardAd showRewardFromRootViewController:viewController];
-        return YES;
     }
-    return NO;
 }
 
 - (void)didReceiveBidResult:(AWMMediaBidResult *)result {

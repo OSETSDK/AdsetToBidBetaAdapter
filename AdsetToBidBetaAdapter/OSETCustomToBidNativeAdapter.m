@@ -35,11 +35,12 @@
     NSDictionary *customInfo = [parameter.customInfo isKindOfClass:NSDictionary.class] ? parameter.customInfo : nil;
     id express = customInfo[@"isExpressAd"];
     self.isExpressAd = [express respondsToSelector:@selector(boolValue)] && [express boolValue];
+    UIViewController *viewController = OSETToBidForegroundWindow().rootViewController;
     // 获取特定键的值
     if (self.isExpressAd) {
         if(!self.nativeAd){
             NSString *osetSlotId = placementId;
-            self.nativeAd = [[OSETNativeAd alloc] initWithSlotId:osetSlotId size:size rootViewController:nil];
+            self.nativeAd = [[OSETNativeAd alloc] initWithSlotId:osetSlotId size:size rootViewController:viewController];
             self.nativeAd.delegate = self;
             [self.nativeAd loadAdData];
         }else{
@@ -50,7 +51,7 @@
     }else{
         if(!self.nativeDataAd){
             NSString *osetSlotId = placementId;
-            self.nativeDataAd = [[OSETNativeDataAd alloc]initWithSlotId:osetSlotId size:size rootViewController:nil];
+            self.nativeDataAd = [[OSETNativeDataAd alloc]initWithSlotId:osetSlotId size:size rootViewController:viewController];
             self.nativeDataAd.delegate = self;
             [self.nativeDataAd loadAdData];
         }else{

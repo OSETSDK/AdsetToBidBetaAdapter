@@ -16,22 +16,22 @@
 /**
  广告曝光回调
  */
-- (void)OSETNativeAdViewCreatorWillExpose:(OSETNativeAdRenderer *)renderer;
+- (void)OSETNativeAdViewCreatorWillExpose:(OSETNativeAdRenderer * _Nonnull)renderer;
 
 /**
  广告点击回调
  */
-- (void)OSETNativeAdViewCreatorDidClick:(OSETNativeAdRenderer *)renderer;
+- (void)OSETNativeAdViewCreatorDidClick:(OSETNativeAdRenderer * _Nonnull)renderer;
 
 /**
  广告关闭回调
  */
-- (void)OSETNativeAdViewCreatorDidClose:(OSETNativeAdRenderer *)renderer;
+- (void)OSETNativeAdViewCreatorDidClose:(OSETNativeAdRenderer * _Nonnull)renderer;
 
 /**
  广告详情页关闭回调
  */
-- (void)OSETNativeAdViewCreatorDetailViewClosed:(OSETNativeAdRenderer *)renderer;
+- (void)OSETNativeAdViewCreatorDetailViewClosed:(OSETNativeAdRenderer * _Nonnull)renderer;
 
 @end
 NS_ASSUME_NONNULL_BEGIN

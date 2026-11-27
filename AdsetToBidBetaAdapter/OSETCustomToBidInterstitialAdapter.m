@@ -53,12 +53,10 @@
 /// 展示广告的方法
 /// @param viewController 控制器对象
 /// @param parameter 展示广告的参数，由ToBid接入媒体配置
-- (BOOL)showAdFromRootViewController:(UIViewController *)viewController parameter:(AWMParameter *)parameter{
+- (void)showAdFromRootViewController:(UIViewController *)viewController parameter:(AWMParameter *)parameter{
     if(self.interstitialAd.isAdValid && viewController){
         [self.interstitialAd showInterstitialFromRootViewController:viewController];
-        return YES;
     }
-    return NO;
 }
 - (void)interstitialDidReceiveSuccess:(nonnull id)interstitialAd slotId:(nonnull NSString *)slotId {
     NSString *price = [NSString stringWithFormat:@"%ld",(long)self.interstitialAd.eCPM];

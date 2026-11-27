@@ -57,6 +57,6 @@
 }
 
 - (void)didRequestAdPrivacyConfigUpdate:(NSDictionary *)config {
-    WindMillPersonalizedAdvertisingState personalizedAdvertisingState = [WindMillAds getPersonalizedAdvertisingState];
+    (void)[WindMillAds getPersonalizedAdvertisingState];
 }
 @end
